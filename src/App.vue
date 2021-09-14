@@ -21,7 +21,7 @@ export default {
     TaskInput
   },
   setup() {
-    const taskList = ref([{id: 0, title: 'Create video', cost: 'And upload on YT', quantity: '23', status: false}])
+    const taskList = ref([{id: 0, title: 'Mango', cost: '12', quantity: '23', status: false}])
 
     const addTask = ({title, cost, quantity}) => {
       taskList.value = [...taskList.value, {id: taskList.value[taskList.value.length - 1].id + 1, title, cost, quantity, status: false}]

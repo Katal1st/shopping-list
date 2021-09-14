@@ -1,9 +1,12 @@
 <template>
   <div class="task-input my-list">
+    <h1>Shopping list</h1>
     <input v-model="title" placeholder="Title" type="text">
     <input v-model="cost" placeholder="Cost" type="text">
     <input v-model="quantity" placeholder="Quantity" type="text">
-    <button @click="onAddTask">Add task</button>
+    <button @click="onAddTask">Add</button>
+    <v-banner>Sum of selected items:{{ [SUM] }}$</v-banner>
+    <v-banner>Total sum:{{ [SUM] }}$</v-banner>
   </div>
 </template>
 
@@ -19,6 +22,8 @@ export default {
       }
       return true
     }
+
+
   },
   setup(props, { emit }) {
     const title = ref('')
@@ -34,9 +39,19 @@ export default {
       cost,
       quantity,
       onAddTask
+
+
     }
+
+    
   }
+
+
 }
+
+
+
+
 </script>
 
 <style scoped>

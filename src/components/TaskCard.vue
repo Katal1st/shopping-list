@@ -1,20 +1,29 @@
 <template>
   <div class="task-card my-style">
     <div>
-      <h4>{{ model.title }}</h4>
-      <p>{{ model.cost }}</p>
-      <p>{{ model.quantity }}</p>
+      <h4>Title:{{ model.title }}</h4>
+      <p>Cost:{{ model.cost }}$</p>
+      <p>Quantity:{{ model.quantity }}</p>
+      <p>Sum:{{ model.cost * model.quantity }}$</p>
+      
+
     </div>
-    <div>
-      <button @click="emitOnDone" v-if="!model.status">✅</button>
-      <button @click="emitOnRemove" v-else>❌</button>
+    <div class="task-card__buttons">
+      <div class="task-card__checkbox">
+      <input type="checkbox" id="checkbox" v-model="checked">
+      <label for="checkbox">{{ checked }}</label>
+      </div>
+      <button @click="emitOnRemove" >x</button>
     </div>
   </div>
 </template>
 
 <script>  
 export default {
-  emits: ['onDone', 'onRemove'],
+  emits: ['onDone', 'onRemove', 'onChecked'],
+  computed: {
+
+  },
   props: {
     model: {
       required: true,
@@ -28,8 +37,8 @@ export default {
     }
   },
   setup(props, { emit }) {
-    const emitOnDone = () => {
-      emit('onDone')
+    const emitOnChecked = () => {
+      emit('onChecked')
     }
 
     const emitOnRemove = () => {
@@ -37,11 +46,13 @@ export default {
     }
 
     return {
-      emitOnDone,
       emitOnRemove
     }
   }
+
 }
+
+
 </script>
 
 <style scoped>
@@ -49,5 +60,17 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+
 }
+  .task-card__buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-card__checkbox {
+  margin-right:50px;
+}
+
+
 </style>
