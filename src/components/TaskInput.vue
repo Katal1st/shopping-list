@@ -5,8 +5,6 @@
     <input v-model="cost" placeholder="Cost" type="text">
     <input v-model="quantity" placeholder="Quantity" type="text">
     <button @click="onAddTask">Add</button>
-    <v-banner>Sum of selected items:{{ [SUM] }}$</v-banner>
-    <v-banner>Total sum:{{ [SUM] }}$</v-banner>
   </div>
 </template>
 
@@ -39,14 +37,8 @@ export default {
       cost,
       quantity,
       onAddTask
-
-
     }
-
-    
   }
-
-
 }
 
 

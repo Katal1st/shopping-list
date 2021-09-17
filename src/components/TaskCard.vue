@@ -4,14 +4,11 @@
       <h4>Title:{{ model.title }}</h4>
       <p>Cost:{{ model.cost }}$</p>
       <p>Quantity:{{ model.quantity }}</p>
-      <p>Sum:{{ model.cost * model.quantity }}$</p>
-      
-
+      <p>Sum:{{ sum }}$</p>
     </div>
     <div class="task-card__buttons">
       <div class="task-card__checkbox">
-      <input type="checkbox" id="checkbox" v-model="checked">
-      <label for="checkbox">{{ checked }}</label>
+      <input type="checkbox" id="checkbox" @click="emitOnDone" v-model="checked" >
       </div>
       <button @click="emitOnRemove" >x</button>
     </div>
@@ -20,36 +17,29 @@
 
 <script>  
 export default {
-  emits: ['onDone', 'onRemove', 'onChecked'],
-  computed: {
-
-  },
+  emits: ['onDone', 'onRemove', ],
   props: {
-    model: {
-      required: true,
-      default: {
-        id: 0,
-        title: 'Create video',
-        cost: 'And upload on YouTube',
-        quantity:21,
-        status: false
-      }
-    }
+    model: {}
   },
   setup(props, { emit }) {
-    const emitOnChecked = () => {
-      emit('onChecked')
+    const emitOnDone = () => {
+      emit('onDone')
     }
 
     const emitOnRemove = () => {
-      emit('onRemove')
+      confirm('remove position?') ? emit('onRemove') : ''; 
     }
 
     return {
+      emitOnDone,
       emitOnRemove
     }
+  },
+    computed: {
+    sum() {
+      return this.model.cost * this.model.quantity
+    }
   }
-
 }
 
 

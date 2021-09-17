@@ -1,12 +1,17 @@
 <template>
+
   <main>
     <TaskInput @onAddTask="addTask"></TaskInput>
     <ul class="task-list my-list">
+    <li>Number of positions:{{ taskList.length }}</li>
+    <li>Total sum:{{ [SUM] }}$</li>
+    <li>Sum of selected items:{{ [SUM] }}$</li>
       <li v-for="item in taskList" :key="item.id">
-        <TaskCard @onRemove="removeTask(item.id)" @onDone="setDoneTask(item.id)" :model="item"></TaskCard>
+         <TaskCard @onRemove="removeTask(item.id)" @onDone="setDoneTask(item.id)" :model="item"></TaskCard>
       </li>
     </ul>
   </main>
+
 </template>
 
 <script>
@@ -39,13 +44,18 @@ export default {
       taskList.value = taskList.value.filter(x => x.id !== id)
     }
 
+
     return {
       taskList,
       addTask,
       removeTask,
       setDoneTask
     }
-  }
+  },
+  //   computed: {
+  // cartTotal() {
+  //     return this.sum += cost * quantity
+  //   }
 }
 </script>
 
